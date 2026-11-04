@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>on the same lvl | all sets</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
@@ -273,17 +276,19 @@
             transition: transform 0.3s ease;
         }
 
-        /* Tracklist Table inside Accordion */
+        /* Tracklist Content & Cover Animation */
         .tracklist-content {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+            opacity: 0;
             background: #050505;
             border-top: 1px solid transparent;
         }
 
         .set-accordion-card.active .tracklist-content {
-            max-height: 1200px;
+            max-height: 1500px;
+            opacity: 1;
             border-top-color: var(--border);
         }
 
@@ -292,8 +297,58 @@
             color: var(--text);
         }
 
+        .set-details-inner {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .set-cover-preview {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: #111;
+            padding: 1rem;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            animation: slideDown 0.4s ease-out;
+        }
+
+        .set-cover-preview img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 4px;
+            border: 1px solid #333;
+        }
+
+        .set-cover-info h4 {
+            font-family: var(--font-y2k);
+            font-size: 1.2rem;
+            text-transform: lowercase;
+            transform: scaleY(1.2);
+            transform-origin: left;
+            margin-bottom: 0.2rem;
+        }
+
+        .set-cover-info p {
+            font-size: 0.8rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Table Responsive Scrolling for Mobile */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         .track-table {
             width: 100%;
+            min-width: 600px;
             border-collapse: collapse;
             font-size: 0.9rem;
         }
@@ -306,12 +361,14 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             border-bottom: 1px solid var(--border);
+            white-space: nowrap;
         }
 
         .track-table td {
             padding: 0.9rem 1rem;
             border-bottom: 1px solid rgba(255,255,255,0.03);
             color: #dddddd;
+            white-space: nowrap;
         }
 
         .track-table tr:hover td {
@@ -386,9 +443,14 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         @media(max-width: 768px) {
             .nav-links-menu {
-                display: none; /* simple mobile fallback or keeps compact */
+                display: none;
             }
         }
     </style>
@@ -439,7 +501,7 @@
             </div>
         </section>
 
-        <!-- ALL SETS SECTION (Interactive Tracklists from images) -->
+        <!-- ALL SETS SECTION (Interactive Tracklists with Set Covers) -->
         <section id="all-sets">
             <h2 class="section-title">all sets & tracklists</h2>
             
@@ -455,117 +517,128 @@
                         <span class="toggle-icon">▼</span>
                     </button>
                     <div class="tracklist-content">
-                        <table class="track-table">
-                            <thead>
-                                <tr>
-                                    <th>Song</th>
-                                    <th>Artist</th>
-                                    <th>Album</th>
-                                    <th>Time</th>
-                                    <th>Links</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="track-title">Do To Me</td>
-                                    <td>Tim Sanders</td>
-                                    <td>Do To Me - Single</td>
-                                    <td>2:24</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Tim+Sanders+Do+To+Me" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Business First</td>
-                                    <td>LOVEFOXY</td>
-                                    <td>Burning Down The Sluthouse</td>
-                                    <td>5:02</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=LOVEFOXY+Business+First" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Dark Thoughts in a Fluorescent Room</td>
-                                    <td>Hayes Bradley</td>
-                                    <td>These Things Take Time, Vol. 1</td>
-                                    <td>9:47</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Hayes+Bradley+Dark+Thoughts" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">KGB</td>
-                                    <td>ADÉLA</td>
-                                    <td>KGB - Single</td>
-                                    <td>2:37</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=ADELA+KGB" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Gimme More</td>
-                                    <td>Britney Spears</td>
-                                    <td>Blackout (Deluxe Version)</td>
-                                    <td>4:11</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Britney+Spears+Gimme+More" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Detour</td>
-                                    <td>Kim Petras</td>
-                                    <td>Detour</td>
-                                    <td>2:36</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Kim+Petras+Detour" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">I LUV IT</td>
-                                    <td>Camila Cabello, Playboi Carti</td>
-                                    <td>C,XOXO</td>
-                                    <td>2:54</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Camila+Cabello+I+LUV+IT" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">oh well</td>
-                                    <td>Ariana Grande</td>
-                                    <td>petal</td>
-                                    <td>3:16</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Ariana+Grande+oh+well" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">AMERICA HAS A PROBLEM</td>
-                                    <td>Beyoncé</td>
-                                    <td>RENAISSANCE</td>
-                                    <td>3:18</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Beyonce+AMERICA+HAS+A+PROBLEM" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">No Going Back (Edit)</td>
-                                    <td>ALPHA 9, Spencer Brown</td>
-                                    <td>No Going Back - Single</td>
-                                    <td>3:24</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=ALPHA+9+Spencer+Brown+No+Going+Back" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">The Less I Know The Better</td>
-                                    <td>Mau P</td>
-                                    <td>The Less I Know The Better</td>
-                                    <td>2:56</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mau+P+The+Less+I+Know+The+Better" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">G.U.Y.</td>
-                                    <td>Lady Gaga</td>
-                                    <td>ARTPOP</td>
-                                    <td>3:52</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Lady+Gaga+GUY" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Dirty Cash (Money Talks)</td>
-                                    <td>PAWSA, The Adventures of Stevie V</td>
-                                    <td>Dirty Cash - Single</td>
-                                    <td>3:41</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PAWSA+Dirty+Cash" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Illegal</td>
-                                    <td>PinkPantheress</td>
-                                    <td>Fancy That</td>
-                                    <td>2:29</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PinkPantheress+Illegal" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="set-details-inner">
+                            <div class="set-cover-preview">
+                                <img src="https://i1.sndcdn.com/artworks-Qu1z15O0ZtnaDNmB-WzV5gA-t500x500.jpg" alt="on the same lvl vol.3 cover">
+                                <div class="set-cover-info">
+                                    <h4>on the same lvl vol.3</h4>
+                                    <p>curated by marcokk</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="track-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Song</th>
+                                            <th>Artist</th>
+                                            <th>Album</th>
+                                            <th>Time</th>
+                                            <th>Links</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="track-title">Do To Me</td>
+                                            <td>Tim Sanders</td>
+                                            <td>Do To Me - Single</td>
+                                            <td>2:24</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Tim+Sanders+Do+To+Me" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Business First</td>
+                                            <td>LOVEFOXY</td>
+                                            <td>Burning Down The Sluthouse</td>
+                                            <td>5:02</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=LOVEFOXY+Business+First" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Dark Thoughts in a Fluorescent Room</td>
+                                            <td>Hayes Bradley</td>
+                                            <td>These Things Take Time, Vol. 1</td>
+                                            <td>9:47</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Hayes+Bradley+Dark+Thoughts" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">KGB</td>
+                                            <td>ADÉLA</td>
+                                            <td>KGB - Single</td>
+                                            <td>2:37</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=ADELA+KGB" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Gimme More</td>
+                                            <td>Britney Spears</td>
+                                            <td>Blackout (Deluxe Version)</td>
+                                            <td>4:11</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Britney+Spears+Gimme+More" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Detour</td>
+                                            <td>Kim Petras</td>
+                                            <td>Detour</td>
+                                            <td>2:36</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Kim+Petras+Detour" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">I LUV IT</td>
+                                            <td>Camila Cabello, Playboi Carti</td>
+                                            <td>C,XOXO</td>
+                                            <td>2:54</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Camila+Cabello+I+LUV+IT" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">oh well</td>
+                                            <td>Ariana Grande</td>
+                                            <td>petal</td>
+                                            <td>3:16</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Ariana+Grande+oh+well" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">AMERICA HAS A PROBLEM</td>
+                                            <td>Beyoncé</td>
+                                            <td>RENAISSANCE</td>
+                                            <td>3:18</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Beyonce+AMERICA+HAS+A+PROBLEM" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">No Going Back (Edit)</td>
+                                            <td>ALPHA 9, Spencer Brown</td>
+                                            <td>No Going Back - Single</td>
+                                            <td>3:24</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=ALPHA+9+Spencer+Brown+No+Going+Back" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">The Less I Know The Better</td>
+                                            <td>Mau P</td>
+                                            <td>The Less I Know The Better</td>
+                                            <td>2:56</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mau+P+The+Less+I+Know+The+Better" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">G.U.Y.</td>
+                                            <td>Lady Gaga</td>
+                                            <td>ARTPOP</td>
+                                            <td>3:52</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Lady+Gaga+GUY" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Dirty Cash (Money Talks)</td>
+                                            <td>PAWSA, The Adventures of Stevie V</td>
+                                            <td>Dirty Cash - Single</td>
+                                            <td>3:41</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PAWSA+Dirty+Cash" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Illegal</td>
+                                            <td>PinkPantheress</td>
+                                            <td>Fancy That</td>
+                                            <td>2:29</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PinkPantheress+Illegal" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -579,199 +652,221 @@
                         <span class="toggle-icon">▼</span>
                     </button>
                     <div class="tracklist-content">
-                        <table class="track-table">
-                            <thead>
-                                <tr>
-                                    <th>Song</th>
-                                    <th>Artist</th>
-                                    <th>Album</th>
-                                    <th>Time</th>
-                                    <th>Links</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="track-title">How Ya Feelin'</td>
-                                    <td>L.P. Rhythm</td>
-                                    <td>How Ya Feelin' - Single</td>
-                                    <td>2:36</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=LP+Rhythm+How+Ya+Feelin" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Dirty Cash (Money Talks)</td>
-                                    <td>PAWSA, The Adventures of Stevie V</td>
-                                    <td>Dirty Cash - Single</td>
-                                    <td>3:41</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PAWSA+Dirty+Cash" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">The Days (NOTION Remix)</td>
-                                    <td>CHRYSTAL, NOTION</td>
-                                    <td>The Days (Remix)</td>
-                                    <td>3:53</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=CHRYSTAL+NOTION+The+Days" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Da Fonk (feat. Joni) [Solarce Extended]</td>
-                                    <td>Mochakk</td>
-                                    <td>Da Fonk [Remixes]</td>
-                                    <td>6:06</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mochakk+Da+Fonk" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Call It What You Like</td>
-                                    <td>Robbie Doherty</td>
-                                    <td>Bass Electronic</td>
-                                    <td>5:25</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Robbie+Doherty+Call+It+What+You+Like" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Ladies & Gentlemen</td>
-                                    <td>Ben Miller</td>
-                                    <td>Ladies & Gentlemen</td>
-                                    <td>2:41</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Ben+Miller+Ladies+Gentlemen" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">The Groove Theory</td>
-                                    <td>Tommy Beatz</td>
-                                    <td>The Groove Theory</td>
-                                    <td>6:15</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Tommy+Beatz+The+Groove+Theory" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Holding onto You</td>
-                                    <td>CHANEY</td>
-                                    <td>Holding onto You</td>
-                                    <td>3:30</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=CHANEY+Holding+onto+You" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Free Your Mind</td>
-                                    <td>Prospa, Cloonee, Sybil</td>
-                                    <td>Free Your Mind</td>
-                                    <td>3:21</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Prospa+Cloonee+Free+Your+Mind" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Actin' Tough</td>
-                                    <td>Dean Turnley</td>
-                                    <td>Actin' Tough</td>
-                                    <td>3:07</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Dean+Turnley+Actin+Tough" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Just The Way You Are</td>
-                                    <td>Milky, Mall Grab</td>
-                                    <td>Just The Way You Are</td>
-                                    <td>2:39</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mall+Grab+Just+The+Way+You+Are" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Gypsy Woman (Basement Boy Strip Mix)</td>
-                                    <td>Crystal Waters</td>
-                                    <td>Surprise</td>
-                                    <td>7:31</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Crystal+Waters+Gypsy+Woman" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Bayside (Radio Edit)</td>
-                                    <td>Obskür</td>
-                                    <td>Bayside</td>
-                                    <td>3:17</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Obskur+Bayside" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="set-details-inner">
+                            <div class="set-cover-preview">
+                                <img src="https://i1.sndcdn.com/artworks-5cFD6mY5lFHOR4ye-y0Vycw-t500x500.jpg" alt="this is house music cover">
+                                <div class="set-cover-info">
+                                    <h4>this is house music</h4>
+                                    <p>curated by marcokk</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="track-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Song</th>
+                                            <th>Artist</th>
+                                            <th>Album</th>
+                                            <th>Time</th>
+                                            <th>Links</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="track-title">How Ya Feelin'</td>
+                                            <td>L.P. Rhythm</td>
+                                            <td>How Ya Feelin' - Single</td>
+                                            <td>2:36</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=LP+Rhythm+How+Ya+Feelin" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Dirty Cash (Money Talks)</td>
+                                            <td>PAWSA, The Adventures of Stevie V</td>
+                                            <td>Dirty Cash - Single</td>
+                                            <td>3:41</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PAWSA+Dirty+Cash" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">The Days (NOTION Remix)</td>
+                                            <td>CHRYSTAL, NOTION</td>
+                                            <td>The Days (Remix)</td>
+                                            <td>3:53</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=CHRYSTAL+NOTION+The+Days" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Da Fonk (feat. Joni) [Solarce Extended]</td>
+                                            <td>Mochakk</td>
+                                            <td>Da Fonk [Remixes]</td>
+                                            <td>6:06</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mochakk+Da+Fonk" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Call It What You Like</td>
+                                            <td>Robbie Doherty</td>
+                                            <td>Bass Electronic</td>
+                                            <td>5:25</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Robbie+Doherty+Call+It+What+You+Like" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Ladies & Gentlemen</td>
+                                            <td>Ben Miller</td>
+                                            <td>Ladies & Gentlemen</td>
+                                            <td>2:41</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Ben+Miller+Ladies+Gentlemen" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">The Groove Theory</td>
+                                            <td>Tommy Beatz</td>
+                                            <td>The Groove Theory</td>
+                                            <td>6:15</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Tommy+Beatz+The+Groove+Theory" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Holding onto You</td>
+                                            <td>CHANEY</td>
+                                            <td>Holding onto You</td>
+                                            <td>3:30</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=CHANEY+Holding+onto+You" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Free Your Mind</td>
+                                            <td>Prospa, Cloonee, Sybil</td>
+                                            <td>Free Your Mind</td>
+                                            <td>3:21</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Prospa+Cloonee+Free+Your+Mind" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Actin' Tough</td>
+                                            <td>Dean Turnley</td>
+                                            <td>Actin' Tough</td>
+                                            <td>3:07</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Dean+Turnley+Actin+Tough" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Just The Way You Are</td>
+                                            <td>Milky, Mall Grab</td>
+                                            <td>Just The Way You Are</td>
+                                            <td>2:39</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mall+Grab+Just+The+Way+You+Are" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Gypsy Woman (Basement Boy Strip Mix)</td>
+                                            <td>Crystal Waters</td>
+                                            <td>Surprise</td>
+                                            <td>7:31</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Crystal+Waters+Gypsy+Woman" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Bayside (Radio Edit)</td>
+                                            <td>Obskür</td>
+                                            <td>Bayside</td>
+                                            <td>3:17</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Obskur+Bayside" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- SET 3: on the sme lvl 2 -->
+                <!-- SET 3: on the same lvl 2 -->
                 <div class="set-accordion-card">
                     <button class="set-header-toggle" onclick="toggleSet(this)">
                         <div class="set-header-info">
-                            <h3>on the sme lvl 2</h3>
+                            <h3>on the same lvl 2</h3>
                             <p>9 tracks · club & hyperpop edits</p>
                         </div>
                         <span class="toggle-icon">▼</span>
                     </button>
                     <div class="tracklist-content">
-                        <table class="track-table">
-                            <thead>
-                                <tr>
-                                    <th>Song</th>
-                                    <th>Artist</th>
-                                    <th>Album</th>
-                                    <th>Time</th>
-                                    <th>Links</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="track-title">Philosophy of Dance (Club Mix)</td>
-                                    <td>Mauro MBS</td>
-                                    <td>Philosophy of Dance</td>
-                                    <td>9:35</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mauro+MBS+Philosophy+of+Dance" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Von dutch a. g. cook remix feat. addison rae</td>
-                                    <td>Charli xcx</td>
-                                    <td>Von dutch (Remix)</td>
-                                    <td>2:37</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Charli+xcx+Von+dutch+remix" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Melatonin</td>
-                                    <td>Tinashe</td>
-                                    <td>Popstar</td>
-                                    <td>3:42</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Tinashe+Melatonin" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Girl Like Me</td>
-                                    <td>PinkPantheress</td>
-                                    <td>Fancy That</td>
-                                    <td>2:25</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PinkPantheress+Girl+Like+Me" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Ladida</td>
-                                    <td>Rochelle Jordan</td>
-                                    <td>Through The Wall</td>
-                                    <td>3:43</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Rochelle+Jordan+Ladida" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Aquamarine</td>
-                                    <td>Addison Rae</td>
-                                    <td>Aquamarine</td>
-                                    <td>2:42</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Addison+Rae+Aquamarine" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Bayside (Radio Edit)</td>
-                                    <td>Obskür</td>
-                                    <td>Bayside</td>
-                                    <td>3:17</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Obskur+Bayside" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Nice to Know You</td>
-                                    <td>PinkPantheress</td>
-                                    <td>Fancy That</td>
-                                    <td>2:50</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PinkPantheress+Nice+to+Know+You" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">No Boys Allowed (OG House Mix)</td>
-                                    <td>Mochakk, Tommy Genesis</td>
-                                    <td>Locomotiva Ibiza 2099 II</td>
-                                    <td>5:52</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mochakk+No+Boys+Allowed" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="set-details-inner">
+                            <div class="set-cover-preview">
+                                <img src="https://i1.sndcdn.com/artworks-PyXBzd8jynRvEm0Q-Sb0wzA-t500x500.jpg" alt="on the same lvl 2 cover">
+                                <div class="set-cover-info">
+                                    <h4>on the same lvl 2</h4>
+                                    <p>curated by marcokk</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="track-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Song</th>
+                                            <th>Artist</th>
+                                            <th>Album</th>
+                                            <th>Time</th>
+                                            <th>Links</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="track-title">Philosophy of Dance (Club Mix)</td>
+                                            <td>Mauro MBS</td>
+                                            <td>Philosophy of Dance</td>
+                                            <td>9:35</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mauro+MBS+Philosophy+of+Dance" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Von dutch a. g. cook remix feat. addison rae</td>
+                                            <td>Charli xcx</td>
+                                            <td>Von dutch (Remix)</td>
+                                            <td>2:37</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Charli+xcx+Von+dutch+remix" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Melatonin</td>
+                                            <td>Tinashe</td>
+                                            <td>Popstar</td>
+                                            <td>3:42</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Tinashe+Melatonin" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Girl Like Me</td>
+                                            <td>PinkPantheress</td>
+                                            <td>Fancy That</td>
+                                            <td>2:25</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PinkPantheress+Girl+Like+Me" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Ladida</td>
+                                            <td>Rochelle Jordan</td>
+                                            <td>Through The Wall</td>
+                                            <td>3:43</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Rochelle+Jordan+Ladida" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Aquamarine</td>
+                                            <td>Addison Rae</td>
+                                            <td>Aquamarine</td>
+                                            <td>2:42</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Addison+Rae+Aquamarine" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Bayside (Radio Edit)</td>
+                                            <td>Obskür</td>
+                                            <td>Bayside</td>
+                                            <td>3:17</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Obskur+Bayside" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Nice to Know You</td>
+                                            <td>PinkPantheress</td>
+                                            <td>Fancy That</td>
+                                            <td>2:50</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PinkPantheress+Nice+to+Know+You" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">No Boys Allowed (OG House Mix)</td>
+                                            <td>Mochakk, Tommy Genesis</td>
+                                            <td>Locomotiva Ibiza 2099 II</td>
+                                            <td>5:52</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Mochakk+No+Boys+Allowed" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -785,117 +880,128 @@
                         <span class="toggle-icon">▼</span>
                     </button>
                     <div class="tracklist-content">
-                        <table class="track-table">
-                            <thead>
-                                <tr>
-                                    <th>Song</th>
-                                    <th>Artist</th>
-                                    <th>Album</th>
-                                    <th>Time</th>
-                                    <th>Links</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="track-title">crank 2</td>
-                                    <td>Slayyyter</td>
-                                    <td>crank 2 - Single</td>
-                                    <td>3:19</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Slayyyter+crank+2" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Party</td>
-                                    <td>Troye Sivan</td>
-                                    <td>She's the Best</td>
-                                    <td>3:21</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Troye+Sivan+Party" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Like a G6</td>
-                                    <td>Far East Movement, The Cataracs, DEV</td>
-                                    <td>Free Wired</td>
-                                    <td>3:36</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Far+East+Movement+Like+a+G6" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Gnarly</td>
-                                    <td>KATSEYE</td>
-                                    <td>Gnarly - Single</td>
-                                    <td>2:17</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=KATSEYE+Gnarly" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Vroom Vroom</td>
-                                    <td>Charli xcx</td>
-                                    <td>Vroom Vroom - EP</td>
-                                    <td>3:13</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Charli+xcx+Vroom+Vroom" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Don't Stop The Music</td>
-                                    <td>Rihanna</td>
-                                    <td>Good Girl Gone Bad</td>
-                                    <td>4:27</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Rihanna+Dont+Stop+The+Music" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Paparazzi</td>
-                                    <td>Lady Gaga</td>
-                                    <td>The Fame</td>
-                                    <td>3:28</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Lady+Gaga+Paparazzi" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Breakin' Dishes</td>
-                                    <td>Rihanna</td>
-                                    <td>Good Girl Gone Bad</td>
-                                    <td>3:20</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Rihanna+Breakin+Dishes" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Diet Pepsi</td>
-                                    <td>Addison Rae</td>
-                                    <td>Addison</td>
-                                    <td>2:49</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Addison+Rae+Diet+Pepsi" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Supernova</td>
-                                    <td>aespa</td>
-                                    <td>Supernova - Single</td>
-                                    <td>2:58</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=aespa+Supernova" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Super Shy</td>
-                                    <td>NewJeans</td>
-                                    <td>NewJeans 'Super Shy'</td>
-                                    <td>2:34</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=NewJeans+Super+Shy" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Who Do You Think You Are</td>
-                                    <td>Spice Girls</td>
-                                    <td>Spice</td>
-                                    <td>4:00</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Spice+Girls+Who+Do+You+Think+You+Are" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Genie in a Bottle</td>
-                                    <td>Christina Aguilera</td>
-                                    <td>Christina Aguilera</td>
-                                    <td>3:37</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Christina+Aguilera+Genie+in+a+Bottle" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Womanizer</td>
-                                    <td>Britney Spears</td>
-                                    <td>Circus</td>
-                                    <td>3:44</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Britney+Spears+Womanizer" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="set-details-inner">
+                            <div class="set-cover-preview">
+                                <img src="https://i1.sndcdn.com/artworks-uATzpgly1ztdJKMM-0fCuXA-t500x500.jpg" alt="on the pelle lvl cover">
+                                <div class="set-cover-info">
+                                    <h4>on the pelle lvl</h4>
+                                    <p>curated by marcokk</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="track-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Song</th>
+                                            <th>Artist</th>
+                                            <th>Album</th>
+                                            <th>Time</th>
+                                            <th>Links</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="track-title">crank 2</td>
+                                            <td>Slayyyter</td>
+                                            <td>crank 2 - Single</td>
+                                            <td>3:19</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Slayyyter+crank+2" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Party</td>
+                                            <td>Troye Sivan</td>
+                                            <td>She's the Best</td>
+                                            <td>3:21</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Troye+Sivan+Party" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Like a G6</td>
+                                            <td>Far East Movement, The Cataracs, DEV</td>
+                                            <td>Free Wired</td>
+                                            <td>3:36</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Far+East+Movement+Like+a+G6" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Gnarly</td>
+                                            <td>KATSEYE</td>
+                                            <td>Gnarly - Single</td>
+                                            <td>2:17</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=KATSEYE+Gnarly" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Vroom Vroom</td>
+                                            <td>Charli xcx</td>
+                                            <td>Vroom Vroom - EP</td>
+                                            <td>3:13</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Charli+xcx+Vroom+Vroom" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Don't Stop The Music</td>
+                                            <td>Rihanna</td>
+                                            <td>Good Girl Gone Bad</td>
+                                            <td>4:27</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Rihanna+Dont+Stop+The+Music" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Paparazzi</td>
+                                            <td>Lady Gaga</td>
+                                            <td>The Fame</td>
+                                            <td>3:28</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Lady+Gaga+Paparazzi" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Breakin' Dishes</td>
+                                            <td>Rihanna</td>
+                                            <td>Good Girl Gone Bad</td>
+                                            <td>3:20</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Rihanna+Breakin+Dishes" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Diet Pepsi</td>
+                                            <td>Addison Rae</td>
+                                            <td>Addison</td>
+                                            <td>2:49</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Addison+Rae+Diet+Pepsi" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Supernova</td>
+                                            <td>aespa</td>
+                                            <td>Supernova - Single</td>
+                                            <td>2:58</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=aespa+Supernova" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Super Shy</td>
+                                            <td>NewJeans</td>
+                                            <td>NewJeans 'Super Shy'</td>
+                                            <td>2:34</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=NewJeans+Super+Shy" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Who Do You Think You Are</td>
+                                            <td>Spice Girls</td>
+                                            <td>Spice</td>
+                                            <td>4:00</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Spice+Girls+Who+Do+You+Think+You+Are" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Genie in a Bottle</td>
+                                            <td>Christina Aguilera</td>
+                                            <td>Christina Aguilera</td>
+                                            <td>3:37</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Christina+Aguilera+Genie+in+a+Bottle" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Womanizer</td>
+                                            <td>Britney Spears</td>
+                                            <td>Circus</td>
+                                            <td>3:44</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Britney+Spears+Womanizer" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -909,124 +1015,135 @@
                         <span class="toggle-icon">▼</span>
                     </button>
                     <div class="tracklist-content">
-                        <table class="track-table">
-                            <thead>
-                                <tr>
-                                    <th>Song</th>
-                                    <th>Artist</th>
-                                    <th>Album</th>
-                                    <th>Time</th>
-                                    <th>Links</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="track-title">Stars</td>
-                                    <td>PinkPantheress</td>
-                                    <td>Fancy That</td>
-                                    <td>2:21</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PinkPantheress+Stars" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Botano (Útero Baixo) - Ódio (Remix)</td>
-                                    <td>DJ Caio Prince, KARAN!</td>
-                                    <td>Botano Remixes</td>
-                                    <td>2:41</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=DJ+Caio+Prince+Botano+Utero+Baixo" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Bruxaria Canônica</td>
-                                    <td>Adame DJ</td>
-                                    <td>Bruxaria Canônica - Single</td>
-                                    <td>3:26</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Adame+DJ+Bruxaria+Canonica" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Rajadão Celestial (feat. DJ Caio Prince)</td>
-                                    <td>Kue</td>
-                                    <td>Marcha</td>
-                                    <td>4:02</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Kue+Rajadao+Celestial" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Novinha Parisiense</td>
-                                    <td>Don Low, DJ Caio Prince, MC Gusto</td>
-                                    <td>Novinha Parisiense - Single</td>
-                                    <td>3:08</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Novinha+Parisiense+DJ+Caio+Prince" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">FEITIÇARIA UNTITLED</td>
-                                    <td>DJ Pablo RB, DJ Caio Prince, MC Jhey</td>
-                                    <td>D.T.N.C.</td>
-                                    <td>2:19</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=FEITICARIA+UNTITLED+DJ+Pablo" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Terror Oriental</td>
-                                    <td>MC Lan, DJ Rafinha Dz7, DJ TENEBROSO</td>
-                                    <td>Terror Oriental - Single</td>
-                                    <td>3:36</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Terror+Oriental+MC+Lan" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">K9</td>
-                                    <td>DJ MVB7, HALC DJ, MC VN Cria, DJ CHRISL</td>
-                                    <td>K9 - Single</td>
-                                    <td>3:04</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=DJ+MVB7+K9" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Beat 85 (feat. Mc Magrinho)</td>
-                                    <td>DJ Ianco, DJ Rafinha Duarte, Mc Gw</td>
-                                    <td>Beat 85 - Single</td>
-                                    <td>2:35</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Beat+85+Mc+Magrinho" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">D4</td>
-                                    <td>kLap</td>
-                                    <td>D4 - Single</td>
-                                    <td>2:09</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=kLap+D4" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Bruxaria Nós Vai Descer Roubando</td>
-                                    <td>DJ DN 07, Jhow Dancer, DJ BONEKINHA</td>
-                                    <td>Bruxaria - Single</td>
-                                    <td>2:32</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Bruxaria+Nos+Vai+Descer+Roubando" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">BARULHO DO ROCK</td>
-                                    <td>DJ TURIN, MC VK DA VS</td>
-                                    <td>ZONA PROIBIDA</td>
-                                    <td>2:06</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=BARULHO+DO+ROCK+DJ+TURIN" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">PENETRA</td>
-                                    <td>3ron, Lawrie</td>
-                                    <td>PENETRA - Single</td>
-                                    <td>2:17</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=3ron+Lawrie+PENETRA" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">O Rock Vive (feat. Mc Danflin & Prime Funk)</td>
-                                    <td>DJ V.R</td>
-                                    <td>O Rock Vive - Single</td>
-                                    <td>3:06</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=O+Rock+Vive+Mc+Danflin" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                                <tr>
-                                    <td class="track-title">Rock Derruba Batalhão</td>
-                                    <td>DJ Talala, Mc Gw</td>
-                                    <td>Rock Derruba Batalhão - Single</td>
-                                    <td>2:56</td>
-                                    <td><div class="track-actions"><a href="https://www.youtube.com/results`" target="_blank" class="track-link">YouTube</a></div></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="set-details-inner">
+                            <div class="set-cover-preview">
+                                <img src="https://i1.sndcdn.com/artworks-zN53YMvnSh5CR0dQ-pniOdw-t500x500.jpg" alt="ABOVE THE LVL VOL. II cover">
+                                <div class="set-cover-info">
+                                    <h4>ABOVE THE LVL VOL. II</h4>
+                                    <p>curated by marcokk</p>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="track-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Song</th>
+                                            <th>Artist</th>
+                                            <th>Album</th>
+                                            <th>Time</th>
+                                            <th>Links</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="track-title">Stars</td>
+                                            <td>PinkPantheress</td>
+                                            <td>Fancy That</td>
+                                            <td>2:21</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=PinkPantheress+Stars" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Botano (Útero Baixo) - Ódio (Remix)</td>
+                                            <td>DJ Caio Prince, KARAN!</td>
+                                            <td>Botano Remixes</td>
+                                            <td>2:41</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=DJ+Caio+Prince+Botano+Utero+Baixo" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Bruxaria Canônica</td>
+                                            <td>Adame DJ</td>
+                                            <td>Bruxaria Canônica - Single</td>
+                                            <td>3:26</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Adame+DJ+Bruxaria+Canonica" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Rajadão Celestial (feat. DJ Caio Prince)</td>
+                                            <td>Kue</td>
+                                            <td>Marcha</td>
+                                            <td>4:02</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Kue+Rajadao+Celestial" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Novinha Parisiense</td>
+                                            <td>Don Low, DJ Caio Prince, MC Gusto</td>
+                                            <td>Novinha Parisiense - Single</td>
+                                            <td>3:08</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Novinha+Parisiense+DJ+Caio+Prince" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">FEITIÇARIA UNTITLED</td>
+                                            <td>DJ Pablo RB, DJ Caio Prince, MC Jhey</td>
+                                            <td>D.T.N.C.</td>
+                                            <td>2:19</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=FEITICARIA+UNTITLED+DJ+Pablo" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Terror Oriental</td>
+                                            <td>MC Lan, DJ Rafinha Dz7, DJ TENEBROSO</td>
+                                            <td>Terror Oriental - Single</td>
+                                            <td>3:36</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Terror+Oriental+MC+Lan" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">K9</td>
+                                            <td>DJ MVB7, HALC DJ, MC VN Cria, DJ CHRISL</td>
+                                            <td>K9 - Single</td>
+                                            <td>3:04</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=DJ+MVB7+K9" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Beat 85 (feat. Mc Magrinho)</td>
+                                            <td>DJ Ianco, DJ Rafinha Duarte, Mc Gw</td>
+                                            <td>Beat 85 - Single</td>
+                                            <td>2:35</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Beat+85+Mc+Magrinho" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">D4</td>
+                                            <td>kLap</td>
+                                            <td>D4 - Single</td>
+                                            <td>2:09</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=kLap+D4" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Bruxaria Nós Vai Descer Roubando</td>
+                                            <td>DJ DN 07, Jhow Dancer, DJ BONEKINHA</td>
+                                            <td>Bruxaria - Single</td>
+                                            <td>2:32</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Bruxaria+Nos+Vai+Descer+Roubando" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">BARULHO DO ROCK</td>
+                                            <td>DJ TURIN, MC VK DA VS</td>
+                                            <td>ZONA PROIBIDA</td>
+                                            <td>2:06</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=BARULHO+DO+ROCK+DJ+TURIN" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">PENETRA</td>
+                                            <td>3ron, Lawrie</td>
+                                            <td>PENETRA - Single</td>
+                                            <td>2:17</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=3ron+Lawrie+PENETRA" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">O Rock Vive (feat. Mc Danflin & Prime Funk)</td>
+                                            <td>DJ V.R</td>
+                                            <td>O Rock Vive - Single</td>
+                                            <td>3:06</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=O+Rock+Vive+Mc+Danflin" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="track-title">Rock Derruba Batalhão</td>
+                                            <td>DJ Talala, Mc Gw</td>
+                                            <td>Rock Derruba Batalhão - Single</td>
+                                            <td>2:56</td>
+                                            <td><div class="track-actions"><a href="https://www.youtube.com/results?search_query=Rock+Derruba+Batalhao+Mc+Gw" target="_blank" class="track-link">YouTube</a></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
