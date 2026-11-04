@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARCO | DJ & Producer</title>
+    <title>on the same lvl</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #0b0b0d;
-            --card-bg: #16161a;
-            --accent-color: #ff2a5f;
-            --text-color: #f0f0f5;
-            --text-muted: #a0a0ab;
-            --font-title: 'Syne', sans-serif;
-            --font-body: 'Inter', sans-serif;
+            --bg: #000000;
+            --text: #ffffff;
+            --muted: #888888;
+            --card-bg: #0a0a0a;
+            --border: #222222;
+            --font-y2k: 'Syne', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
         }
 
         * {
@@ -26,238 +26,241 @@
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg);
+            color: var(--text);
             font-family: var(--font-body);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        header {
-            min-height: 85vh;
+        /* Fixed Navigation Header */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-family: var(--font-y2k);
+            font-weight: 800;
+            font-size: 1.2rem;
+            text-transform: lowercase;
+            transform: scaleY(1.4);
+            letter-spacing: -0.5px;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-soundcloud {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+
+        .nav-soundcloud:hover {
+            opacity: 0.6;
+        }
+
+        .nav-soundcloud svg {
+            width: 24px;
+            height: 24px;
+            fill: #ffffff;
+        }
+
+        /* Hero Section Y2K Style */
+        .hero {
+            position: relative;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
+            padding: 6rem 1.5rem 4rem 1.5rem;
             text-align: center;
-            padding: 2rem;
-            background: radial-gradient(circle at center, rgba(255, 42, 95, 0.15) 0%, rgba(11, 11, 13, 1) 70%);
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.95) 85%, #000000 100%), 
+                        url('cover.png') center/cover no-repeat;
         }
 
-        header h1 {
-            font-family: var(--font-title);
-            font-size: clamp(4rem, 12vw, 9rem);
-            letter-spacing: -2px;
-            text-transform: uppercase;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 30px rgba(255, 42, 95, 0.3);
-        }
-
-        header p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            letter-spacing: 3px;
-            text-transform: uppercase;
+        /* Fallback if cover.png isn't placed yet */
+        .hero-title-container {
             margin-bottom: 2rem;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+        .y2k-title {
+            font-family: var(--font-y2k);
+            font-size: clamp(3rem, 11vw, 8.5rem);
+            font-weight: 800;
+            text-transform: lowercase;
+            line-height: 0.85;
+            letter-spacing: -2px;
+            /* Y2K Stretched Font Effect */
+            transform: scaleY(1.55);
+            transform-origin: bottom center;
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+            margin-bottom: 1.5rem;
         }
 
-        .btn {
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .hero-subtitle {
             font-size: 0.95rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-top: 1.5rem;
         }
 
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(255, 42, 95, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(255, 42, 95, 0.6);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-color);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--text-color);
+        /* Main Content Layout */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 6rem 1.5rem;
         }
 
         section {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 4rem 1.5rem;
+            margin-bottom: 5rem;
         }
 
-        h2 {
-            font-family: var(--font-title);
-            font-size: 2rem;
-            text-transform: uppercase;
+        .section-title {
+            font-family: var(--font-y2k);
+            font-size: 1.8rem;
+            text-transform: lowercase;
+            transform: scaleY(1.3);
+            transform-origin: left;
             margin-bottom: 2rem;
-            position: relative;
-            display: inline-block;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--accent-color);
+        /* Bio / Info */
+        .bio-text {
+            font-size: 1.1rem;
+            color: #cccccc;
+            line-height: 1.7;
+            font-weight: 300;
+            border-left: 2px solid var(--text);
+            padding-left: 1.2rem;
         }
 
-        .sets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        /* Soundcloud Embeds Container */
+        .embed-container {
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
         }
 
-        .set-card {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease;
+        .embed-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 4px;
         }
 
-        .set-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .set-card h3 {
-            font-family: var(--font-title);
-            margin-bottom: 0.5rem;
-        }
-
-        .set-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .gallery-grid {
+        /* Links & Buttons */
+        .social-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1rem;
         }
 
-        .gallery-item {
-            width: 100%;
-            height: 250px;
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            object-fit: cover;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .contact-box {
-            background-color: var(--card-bg);
-            border-radius: 16px;
-            padding: 3rem 2rem;
+        .btn-link {
+            display: block;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .social-links a {
-            color: var(--text-muted);
+            padding: 1rem;
+            background: #ffffff;
+            color: #000000;
             text-decoration: none;
-            transition: color 0.3s ease;
+            font-weight: 700;
+            text-transform: lowercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            border: 1px solid #ffffff;
         }
 
-        .social-links a:hover {
-            color: var(--accent-color);
+        .btn-link:hover {
+            background: #000000;
+            color: #ffffff;
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 3rem 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-transform: lowercase;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>MARCO</h1>
-        <p>DJ & Sound Curator</p>
-        <div class="cta-buttons">
-            <a href="#sets" class="btn btn-primary">Ouvir DJ Sets</a>
-            <a href="#booking" class="btn btn-secondary">Booking & Contato</a>
+    <!-- Fixed Header Navigation -->
+    <nav>
+        <a href="#" class="nav-logo">on the same lvl</a>
+        <a href="https://soundcloud.com/marcokk" target="_blank" class="nav-soundcloud" aria-label="SoundCloud">
+            <span>soundcloud</span>
+            <svg viewBox="0 0 24 24">
+                <path d="M11.56 8.87V17h8.76c1.48 0 2.68-1.2 2.68-2.68 0-1.42-1.11-2.58-2.51-2.67-.14-2.22-1.98-3.97-4.25-3.97-.67 0-1.31.15-1.88.43-.65-1.29-1.97-2.18-3.51-2.18-1.89 0-3.48 1.34-3.85 3.12-.14-.02-.28-.03-.43-.03-1.66 0-3 1.34-3 3 0 .15.01.29.04.43C1.59 11.83 0 13.43 0 15.42 0 17.62 1.78 19.4 3.98 19.4h.52V8.87h7.06z"/>
+            </svg>
+        </a>
+    </nav>
+
+    <!-- Hero / Header Section -->
+    <header class="hero">
+        <div class="hero-title-container">
+            <h1 class="y2k-title">on the same lvl</h1>
+            <p class="hero-subtitle">marco / dj & sound curator</p>
         </div>
     </header>
 
-    <section id="sets">
-        <h2>Latest Sets</h2>
-        <div class="sets-grid">
-            <div class="set-card">
-                <h3>Live Session 01</h3>
-                <p>House, Tech House & Hyperpop Fusions</p>
-                <a href="https://soundcloud.com" target="_blank" class="btn btn-secondary" style="display: inline-block; width: 100%; text-align: center;">Ouvir no SoundCloud</a>
-            </div>
-            <div class="set-card">
-                <h3>Club Mix '26</h3>
-                <p>UK Garage & Club Music</p>
-                <a href="https://music.apple.com" target="_blank" class="btn btn-secondary" style="display: inline-block; width: 100%; text-align: center;">Ouvir no Apple Music</a>
-            </div>
-        </div>
-    </section>
+    <main>
+        <!-- Bio / About Section -->
+        <section id="about">
+            <h2 class="section-title">about</h2>
+            <p class="bio-text">
+                Emerging DJ and sound curator blending rhythmic house music textures, high-energy pop edits, and underground Brazilian funk rhythms. Driven by seamless transitions and raw club atmosphere.
+            </p>
+        </section>
 
-    <section id="gallery">
-        <h2>Galeria</h2>
-        <div class="gallery-grid">
-            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&auto=format&fit=crop" alt="DJ Set Live" class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1571266028243-3716f02d2d2e?w=600&auto=format&fit=crop" alt="DJ Decks" class="gallery-item">
-            <img src="https://images.unsplash.com/photo-1598387993441-a364f854c3e1?w=600&auto=format&fit=crop" alt="Club Lights" class="gallery-item">
-        </div>
-    </section>
+        <!-- Sets & SoundCloud Embeds -->
+        <section id="sets">
+            <h2 class="section-title">featured sets</h2>
+            <div class="embed-container">
+                
+                <!-- Main Track Embed -->
+                <div class="embed-card">
+                    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay; encrypted-media" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/soundcloud%253Atracks%253A2425826895&color=%23000000&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+                </div>
 
-    <section id="booking">
-        <div class="contact-box">
-            <h2>Booking & Press</h2>
-            <p>Para datas de shows, eventos ou imprensa:</p>
-            <div class="cta-buttons" style="margin-top: 1.5rem;">
-                <a href="https://wa.me/5500000000000" target="_blank" class="btn btn-primary">Falar no WhatsApp</a>
-                <a href="mailto:contato@marcodj.com" class="btn btn-secondary">Enviar E-mail</a>
             </div>
-            <div class="social-links">
-                <a href="#" target="_blank">Instagram</a>
-                <a href="#" target="_blank">SoundCloud</a>
-                <a href="#" target="_blank">Apple Music</a>
+        </section>
+
+        <!-- Booking / Contact -->
+        <section id="contact">
+            <h2 class="section-title">connect & booking</h2>
+            <div class="social-grid">
+                <a href="https://soundcloud.com/marcokk" target="_blank" class="btn-link">soundcloud</a>
+                <a href="mailto:contact@onthesamelvl.com" class="btn-link">email / booking</a>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <footer>
-        <p>&copy; 2026 MARCO. Todos os direitos reservados.</p>
+        <p>on the same lvl &copy; 2026. all rights reserved.</p>
     </footer>
 
 </body>
